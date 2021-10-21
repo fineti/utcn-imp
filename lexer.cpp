@@ -148,6 +148,7 @@ std::ostream &operator<<(std::ostream &os, const Token::Kind kind)
     case Token::Kind::MINUS: return os << "-";
     case Token::Kind::PRODUCT: return os << "*";
     case Token::Kind::DIVISION: return os << "/";
+    case Token::Kind::MODULO: return os << "%";
     case Token::Kind::END: return os << "END";
     case Token::Kind::INT: return os << "INT";
     case Token::Kind::STRING: return os << "STRING";
@@ -212,6 +213,7 @@ const Token &Lexer::Next()
     case '-': return NextChar(), tk_ = Token::Minus(loc);
     case '*': return NextChar(), tk_ = Token::Product(loc);
     case '/': return NextChar(), tk_ = Token::Division(loc);
+    case '%': return NextChar(), tk_ = Token::Modulo(loc);
     case ',': return NextChar(), tk_ = Token::Comma(loc);
     case '"': {
       std::string word;
