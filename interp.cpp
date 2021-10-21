@@ -55,6 +55,9 @@ void Interp::Run()
       case Opcode::ADD: {
         auto rhs = PopInt();
         auto lhs = PopInt();
+        if(rhs >= 0 && lhs >= 0 && (rhs + lhs < 0)) {
+          throw RuntimeError("Addition overflow");
+        }
         Push(lhs + rhs);
         continue;
       }
