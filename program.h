@@ -24,6 +24,7 @@ enum class Opcode : uint8_t {
   ADD,
   SUB,
   PROD,
+  DIV,
   RET,
 
   JUMP_FALSE,

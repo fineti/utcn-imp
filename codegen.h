@@ -153,8 +153,12 @@ private:
   void EmitReturn();
   /// Emit an add opcode.
   void EmitAdd();
-  void EmitProd();
+  /// Emit a sub opcode.
   void EmitSub();
+  /// Emit a prod opcode.
+  void EmitProd();
+  /// Emit an div opcode.
+  void EmitDiv();
   /// Emit a label.
   void EmitLabel(Label label);
   /// Emit a conditional jump.

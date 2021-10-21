@@ -86,6 +86,7 @@ public:
     ADD,
     SUB,
     PROD,
+    DIV,
   };
 
 public:

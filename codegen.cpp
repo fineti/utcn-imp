@@ -212,6 +212,9 @@ void Codegen::LowerBinaryExpr(const Scope &scope, const BinaryExpr &binary)
     case BinaryExpr::Kind::PROD: {
       return EmitProd();
     }
+    case BinaryExpr::Kind::DIV: {
+      return EmitDiv();
+    }
     case BinaryExpr::Kind::ADD: {
       return EmitAdd();
     }
@@ -375,6 +378,13 @@ void Codegen::EmitProd()
   assert(depth_ > 0 && "no elements on stack");
   depth_ -= 1;
   Emit<Opcode>(Opcode::PROD);
+}
+
+void Codegen::EmitDiv()
+{
+  assert(depth_ > 0 && "no elements on stack");
+  depth_ -= 1;
+  Emit<Opcode>(Opcode::DIV);
 }
 
 // -----------------------------------------------------------------------------
