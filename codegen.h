@@ -153,7 +153,7 @@ private:
   void EmitReturn();
   /// Emit an add opcode.
   void EmitAdd();
-  
+  void EmitProd();
   void EmitSub();
   /// Emit a label.
   void EmitLabel(Label label);

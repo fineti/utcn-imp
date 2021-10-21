@@ -199,6 +199,18 @@ std::shared_ptr<Expr> Parser::ParseAddSubExpr()
 }
 
 // -----------------------------------------------------------------------------
+std::shared_ptr<Expr> Parser::ParseProductExpr()
+{
+  std::shared_ptr<Expr> term = ParseCallExpr();
+  while (Current().Is(Token::Kind::PRODUCT)) {
+    lexer_.Next();
+    auto rhs = ParseCallExpr();
+    term = std::make_shared<BinaryExpr>(BinaryExpr::Kind::PROD, term, rhs);
+  }
+  return term;
+}
+
+// -----------------------------------------------------------------------------
 const Token &Parser::Expect(Token::Kind kind)
 {
   lexer_.Next();

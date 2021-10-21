@@ -209,6 +209,9 @@ void Codegen::LowerBinaryExpr(const Scope &scope, const BinaryExpr &binary)
   LowerExpr(scope, binary.GetLHS());
   LowerExpr(scope, binary.GetRHS());
   switch (binary.GetKind()) {
+    case BinaryExpr::Kind::PROD: {
+      return EmitProd();
+    }
     case BinaryExpr::Kind::ADD: {
       return EmitAdd();
     }
@@ -365,6 +368,13 @@ void Codegen::EmitSub()
   assert(depth_ > 0 && "no elements on stack");
   depth_ -= 1;
   Emit<Opcode>(Opcode::SUB);
+}
+
+void Codegen::EmitProd()
+{
+  assert(depth_ > 0 && "no elements on stack");
+  depth_ -= 1;
+  Emit<Opcode>(Opcode::PROD);
 }
 
 // -----------------------------------------------------------------------------
