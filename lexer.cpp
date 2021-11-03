@@ -143,6 +143,7 @@ std::ostream &operator<<(std::ostream &os, const Token::Kind kind)
     case Token::Kind::COLON: return os << ":";
     case Token::Kind::SEMI: return os << ";";
     case Token::Kind::EQUAL: return os << "=";
+    case Token::Kind::ISEQ: return os << "==";
     case Token::Kind::COMMA: return os << ",";
     case Token::Kind::PLUS: return os << "+";
     case Token::Kind::MINUS: return os << "-";
@@ -208,7 +209,15 @@ const Token &Lexer::Next()
     case '}': return NextChar(), tk_ = Token::RBrace(loc);
     case ':': return NextChar(), tk_ = Token::Colon(loc);
     case ';': return NextChar(), tk_ = Token::Semi(loc);
-    case '=': return NextChar(), tk_ = Token::Equal(loc);
+    case '=': {
+      NextChar();
+      if(chr_ == '=') {
+        return NextChar(), tk_ = Token::IsEqual(loc);
+      }
+      else {
+        return tk_ = Token::Equal(loc);
+      }
+    }
     case '+': return NextChar(), tk_ = Token::Plus(loc);
     case '-': return NextChar(), tk_ = Token::Minus(loc);
     case '*': return NextChar(), tk_ = Token::Product(loc);

@@ -85,6 +85,12 @@ void Interp::Run()
         Push(lhs % rhs);
         continue;
       }
+      case Opcode::ISEQ: {
+        auto rhs = PopInt();
+        auto lhs = PopInt();
+        Push((int64_t)(lhs == rhs ? 1 : 0));
+        continue;
+      }
       case Opcode::RET: {
         auto depth = prog_.Read<unsigned>(pc_);
         auto nargs = prog_.Read<unsigned>(pc_);

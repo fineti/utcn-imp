@@ -224,6 +224,9 @@ void Codegen::LowerBinaryExpr(const Scope &scope, const BinaryExpr &binary)
     case BinaryExpr::Kind::SUB: {
       return EmitSub();
     }
+    case BinaryExpr::Kind::ISEQ: {
+      return EmitIsEq();
+    }
   }
 }
 
@@ -395,6 +398,13 @@ void Codegen::EmitMod()
   assert(depth_ > 0 && "no elements on stack");
   depth_ -= 1;
   Emit<Opcode>(Opcode::MOD);
+}
+
+void Codegen::EmitIsEq()
+{
+  assert(depth_ > 0 && "no elements on stack");
+  depth_ -= 1;
+  Emit<Opcode>(Opcode::ISEQ);
 }
 
 // -----------------------------------------------------------------------------

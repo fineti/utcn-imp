@@ -179,6 +179,20 @@ std::shared_ptr<Expr> Parser::ParseCallExpr()
 }
 
 // -----------------------------------------------------------------------------
+std::shared_ptr<Expr> Parser::ParseCondExpr()
+{
+  std::shared_ptr<Expr> term = ParseAddSubExpr();
+  while (Current().Is(Token::Kind::ISEQ)) {
+  	if(Current().Is(Token::Kind::ISEQ)) {
+      lexer_.Next();
+	    auto rhs = ParseAddSubExpr();
+	    term = std::make_shared<BinaryExpr>(BinaryExpr::Kind::ISEQ, term, rhs);
+  	}
+  }
+  return term;
+}
+
+// -----------------------------------------------------------------------------
 std::shared_ptr<Expr> Parser::ParseAddSubExpr()
 {
   std::shared_ptr<Expr> term = ParseProdDivModExpr();

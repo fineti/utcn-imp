@@ -88,6 +88,7 @@ public:
     PROD,
     MOD,
     DIV,
+    ISEQ
   };
 
 public:

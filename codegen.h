@@ -161,6 +161,8 @@ private:
   void EmitDiv();
   /// Emit an div opcode.
   void EmitMod();
+  /// Emit is equal opcode
+  void EmitIsEq();
   /// Emit a label.
   void EmitLabel(Label label);
   /// Emit a conditional jump.

@@ -45,6 +45,7 @@ public:
     COLON,
     SEMI,
     EQUAL,
+    ISEQ,
     COMMA,
     PLUS,
     MINUS,
@@ -110,6 +111,7 @@ public:
   static Token Colon(const Location &l) { return Token(l, Kind::COLON); }
   static Token Semi(const Location &l) { return Token(l, Kind::SEMI); }
   static Token Equal(const Location &l) { return Token(l, Kind::EQUAL); }
+  static Token IsEqual(const Location &l) { return Token(l, Kind::ISEQ); }
   static Token Plus(const Location &l) { return Token(l, Kind::PLUS); }
   static Token Minus(const Location &l) { return Token(l, Kind::MINUS); }
   static Token Product(const Location &l) { return Token(l, Kind::PRODUCT); }
