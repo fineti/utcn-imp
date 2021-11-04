@@ -170,7 +170,6 @@ void Codegen::LowerIfStmt(const Scope &scope, const IfStmt &ifStmt)
   if(elseStmt != nullptr) //could be optional
   {
     LowerStmt(scope, *elseStmt);
-    EmitJump(exit);
   }
   EmitLabel(exit);
 }
