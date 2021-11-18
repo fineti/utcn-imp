@@ -39,6 +39,7 @@ private:
       FUNC,
       PROTO,
       ARG,
+      LET
     } Kind;
 
     union {
@@ -120,6 +121,8 @@ private:
   void LowerReturnStmt(const Scope &scope, const ReturnStmt &returnStmt);
   /// Lowers a standalone expression statement.
   void LowerExprStmt(const Scope &scope, const ExprStmt &exprStmt);
+  /// Lowers a declaration statement
+  void LowerLetStmt(const Scope &scope, const Letstmt &letStmt);
 
   /// Lowers a single expression.
   void LowerExpr(const Scope &scope, const Expr &expr);

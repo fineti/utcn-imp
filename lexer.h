@@ -59,6 +59,7 @@ public:
     STRING,
     IDENT,
     END,
+    LET
   };
 
 public:
@@ -128,6 +129,7 @@ public:
   static Token Ident(const Location &l, const std::string &str);
   static Token String(const Location &l, const std::string &str);
   static Token Integer(const Location &l, const uint64_t &nr);
+  static Token Let(const Location &l) { return Token(l, Kind::LET); }
 
   /// Print the token to a stream.
   void Print(std::ostream &os) const;

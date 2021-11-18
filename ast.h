@@ -23,7 +23,8 @@ public:
     WHILE,
     IF,
     EXPR,
-    RETURN
+    RETURN,
+    LET
   };
 
 public:
@@ -264,6 +265,35 @@ private:
   std::shared_ptr<Stmt> stmt_;
   /// Expression to be executed in the else body.
   std::shared_ptr<Stmt> else_stmt_;
+};
+
+/**
+* LET statement
+* let (<string>) stmt
+*
+*/
+class LetStmt final : public Stmt {
+public:
+  LetStmt(const std::string &name,const std::string &type, std::shared_ptr<Expr> expr)
+    : Stmt(Kind::LET)
+    , name_(name)
+    , type_(type)
+    , expr_(expr)
+
+  {
+  }
+
+  const std::string &GetName() const { return name_; }
+  const std::shared_ptr<Expr> &GetExpr() const {return expr_; }
+
+
+private:
+  /// Name of the var 
+  const std::string &name_;
+  /// Type of the var
+  const std::string &type_;
+  /// Expresion to asign to var
+  std::shared_ptr<Expr> expr_;
 };
 
 /**

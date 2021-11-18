@@ -175,6 +175,12 @@ void Codegen::LowerIfStmt(const Scope &scope, const IfStmt &ifStmt)
 }
 
 // -----------------------------------------------------------------------------
+void Codegen::LowerLetStmt(const Scope &scope, const IfStmt &letStmt) {
+  
+}
+
+
+// -----------------------------------------------------------------------------
 void Codegen::LowerReturnStmt(const Scope &scope, const ReturnStmt &retStmt)
 {
   LowerExpr(scope, retStmt.GetExpr());
